@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animasi Kue Ulang Tahun</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f8e9e9;
+        overflow: hidden;
+        font-family: "Arial", sans-serif;
+        position: relative;
+      }
+
+      .container {
+        position: relative;
+        text-align: center;
+      }
+
+      .cake {
+        position: relative;
+        width: 250px;
+        height: 200px;
+        margin: 0 auto;
+      }
+
+      .plate {
+        width: 270px;
+        height: 30px;
+        background-color: #e0e0e0;
+        border-radius: 50%;
+        position: absolute;
+        bottom: -10px;
+        left: -10px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .cake-bottom {
+        width: 250px;
+        height: 70px;
+        background-color: #f48fb1;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 0;
+      }
+
+      .cake-middle {
+        width: 220px;
+        height: 60px;
+        background-color: #f06292;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 70px;
+        left: 15px;
+      }
+
+      .cake-top {
+        width: 180px;
+        height: 50px;
+        background-color: #ec407a;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 130px;
+        left: 35px;
+      }
+
+      .candle {
+        width: 10px;
+        height: 50px;
+        background: linear-gradient(to bottom, #ff9800, #ff5722);
+        position: absolute;
+        bottom: 180px;
+        left: 120px;
+        border-radius: 5px;
+      }
+
+      .flame {
+        width: 15px;
+        height: 30px;
+        background: linear-gradient(to bottom, #ffeb3b, #ff5722);
+        position: absolute;
+        bottom: 230px;
+        left: 117.5px;
+        border-radius: 50% 50% 20% 20%;
+        box-shadow: 0 0 10px 5px rgba(255, 235, 59, 0.8);
+        animation: flicker 0.5s infinite alternate;
+      }
+
+      .frosting {
+        position: absolute;
+      }
+
+      .frosting1 {
+        width: 40px;
+        height: 20px;
+        background-color: #f8bbd0;
+        border-radius: 50%;
+        bottom: 125px;
+        left: 45px;
+      }
+
+      .frosting2 {
+        width: 40px;
+        height: 20px;
+        background-color: #fce4ec;
+        border-radius: 50%;
+        bottom: 125px;
+        left: 105px;
+      }
+
+      .frosting3 {
+        width: 40px;
+        height: 20px;
+        background-color: #f8bbd0;
+        border-radius: 50%;
+        bottom: 125px;
+        left: 165px;
+      }
+
+      .message {
+        font-size: 32px;
+        color: #c2185b;
+        margin-bottom: 80px;
+        text-transform: uppercase;
+        font-weight: bold;
+        animation: bounce 2s infinite;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f44336;
+        opacity: 0;
+      }
+
+      .controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        background-color: #d81b60;
+        color: white;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #ad1457;
+      }
+
+      @keyframes flicker {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.05);
+          opacity: 0.8;
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-30px);
+        }
+        60% {
+          transform: translateY(-15px);
+        }
+      }
+
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(1000px) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      .cake-container {
+        animation: float 3s infinite ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="message">Selamat Ulang Tahun yang ke-20!</h1>
+      <div class="cake-container">
+        <div class="cake">
+          <div class="plate"></div>
+          <div class="cake-bottom"></div>
+          <div class="cake-middle"></div>
+          <div class="cake-top"></div>
+          <div class="candle"></div>
+          <div class="flame"></div>
+          <div class="frosting frosting1"></div>
+          <div class="frosting frosting2"></div>
+          <div class="frosting frosting3"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="playBtn">Putar Musik</button>
+      <button class="btn" id="stopBtn">Hentikan</button>
+    </div>
+
+    <audio id="birthdaySong" loop>
+      <!-- Free instrumental Happy Birthday from free-stock-music.com -->
+      <source src="img/happy-birthday-334876.mp3" type="audio/mpeg" />
+      <!-- Backup option -->
+      <source
+        src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8634fb417.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const audio = document.getElementById("birthdaySong");
+        const playBtn = document.getElementById("playBtn");
+        const stopBtn = document.getElementById("stopBtn");
+
+        // Preload audio untuk kinerja yang lebih baik
+        audio.load();
+
+        // Tangani masalah autoplay
+        audio.addEventListener("error", function (e) {
+          console.log("Error playing audio: ", e);
+          alert("Terjadi masalah dengan audio. Silakan coba lagi.");
+        });
+
+        // Fungsi untuk memainkan musik
+        playBtn.addEventListener("click", function () {
+          // Gunakan Promise untuk menangani permintaan audio yang lebih baik
+          const playPromise = audio.play();
+
+          if (playPromise !== undefined) {
+            playPromise
+              .then((_) => {
+                console.log("Audio berhasil diputar");
+                createConfetti();
+              })
+              .catch((error) => {
+                console.log("Gagal memutar audio: ", error);
+                alert(
+                  "Browser mungkin memblokir autoplay. Silakan izinkan autoplay untuk situs ini."
+                );
+              });
+          } else {
+            createConfetti();
+          }
+        });
+
+        // Fungsi untuk menghentikan musik
+        stopBtn.addEventListener("click", function () {
+          audio.pause();
+          audio.currentTime = 0;
+        });
+
+        // Membuat konfeti
+        function createConfetti() {
+          const colors = [
+            "#f44336",
+            "#e91e63",
+            "#9c27b0",
+            "#673ab7",
+            "#3f51b5",
+            "#2196f3",
+            "#03a9f4",
+            "#00bcd4",
+            "#009688",
+            "#4caf50",
+            "#8bc34a",
+            "#cddc39",
+            "#ffeb3b",
+            "#ffc107",
+            "#ff9800",
+            "#ff5722",
+          ];
+
+          for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement("div");
+            confetti.className = "confetti";
+            confetti.style.backgroundColor =
+              colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.top = -10 + "px";
+            confetti.style.width = Math.random() * 10 + 5 + "px";
+            confetti.style.height = Math.random() * 10 + 5 + "px";
+            confetti.style.opacity = 1;
+            confetti.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+
+            document.body.appendChild(confetti);
+
+            // Animasi jatuh konfeti
+            const animation = confetti.animate(
+              [
+                { transform: "translateY(0) rotate(0deg)", opacity: 1 },
+                {
+                  transform:
+                    "translateY(" +
+                    window.innerHeight +
+                    "px) rotate(" +
+                    Math.random() * 1000 +
+                    "deg)",
+                  opacity: 0,
+                },
+              ],
+              {
+                duration: Math.random() * 3000 + 2000, // Antara 2-5 detik
+                easing: "ease-in-out",
+                iterations: 1,
+              }
+            );
+
+            animation.onfinish = function () {
+              confetti.remove();
+            };
+          }
+        }
+
+        // Tambahkan efek berkedip pada lilin
+        const flame = document.querySelector(".flame");
+        setInterval(() => {
+          setInterval(() => {
+            const boxShadowSize = `0 0 ${5 + Math.random() * 5}px ${
+              3 + Math.random() * 2
+            }px rgba(255, 235, 59, ${0.7 + Math.random() * 0.3})`;
+            const flameHeight = `${25 + Math.random() * 5}px`;
+
+            flame.style.boxShadow = boxShadowSize;
+            flame.style.height = flameHeight;
+          }, 100);
+        }, 100);
+      });
+    </script>
+  </body>
+</html>
